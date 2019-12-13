@@ -15,7 +15,7 @@ class LinkedList(object):
                 self.head = node
             else:
                 curr = self.head                #curr node를 Head로 놓고
-                while curr.next != None:        #curr node가 0이 아닐떄까지 
+                while curr.next != None:        #curr node가 0이 아닐때까지 
                     curr = curr.next            #curr node를 다음으로 보내고
                 curr.next = node                #curr node가 마지막이면 node를 추가한다
 
@@ -41,28 +41,28 @@ class LinkedList(object):
             curr_idx = 0
 
             # 1) Add 0 index
-            if idx == 0:                        #제일 앞에 추가할 때
-                if self.head:                   #head가 있으면
-                    nextNode = self.head        #다음 노드를 Head로 놓고
-                    self.head = node            #head에 Node 추가
-                    self.head.next = nextn      #head의 next를 next node로 연결한다
+            if idx == 0:                            #제일 앞에 추가할 때
+                if self.head:                       #head가 있으면
+                    nextNode = self.head            #다음 노드(nextNode)를 Head로 놓고
+                    self.head = node                #head에 추가할 Node를 추가
+                    self.head.next = nextNode       #head의 next를 다음노드(nextNode)로 연결한다
                 else:
-                    self.head = node
+                    self.head = node                #head가 없으면, node를 head에 추가
             
-            else:
+            else:                                   #제일앞에 추가하지 않을 때, idx에 추가할 때
             # 2) Add at given index &
             # 3) At the end of the linked list
-                while curr_idx < idx:
-                    if curr:
+                while curr_idx < idx:               #현재 Node의 index (curr_idx)가 추가할 위치(idx)보다 작을 때까지
+                    if curr:                        #현재 node를 계속 끝으로 넘긴다.
                         prev = curr
                         curr = curr.next
                     else:
                         break
                     curr_idx += 1
                 
-                if curr_idx == idx:
-                    node.next = curr
-                    prev.next = node
+                if curr_idx == idx:                 #현재 node의 idx가 추가할 idx랑 같으면
+                    node.next = curr                #현 node의 next를 curr과 연결
+                    prev.next = node                #전 node의 next를 node와 연결
 
                 else:
                     return -1
