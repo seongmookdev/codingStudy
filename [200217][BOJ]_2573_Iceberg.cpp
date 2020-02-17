@@ -15,6 +15,13 @@ int ans;
 void dfs(int y, int x){
 
     visited[y][n]=1;
+    printf("\n");
+    for(int y=0; y<n; ++y){
+        for(int x=0; x<m; ++x){
+            printf("%d ",visited[y][x]);
+        }
+        printf("\n");
+    }
     result[cnt]++;
 
     if(cnt == 1){
@@ -23,7 +30,7 @@ void dfs(int y, int x){
     }
 
     for(int dir=0; dir<4; ++dir){
-        printf("dir\n");
+
         int ny = y + dy[dir];
         int nx = x + dx[dir];
         int pos_cnt=0;
@@ -39,8 +46,8 @@ void dfs(int y, int x){
             if(pos[i] == 0) pos_cnt++;
         }
 
-        for(int y=1; y<n-1; ++y){
-            for(int x=1; x<m-1; ++x){
+        for(int y=0; y<n; ++y){
+            for(int x=0; x<m; ++x){
                 if(visited[ny][nx]==0 && backup[ny][nx]!=0){
                     backup[ny][nx] -= pos_cnt;
                     if(backup[ny][nx]<=0) backup[ny][nx] = 0;
@@ -50,13 +57,7 @@ void dfs(int y, int x){
             }
         }
 
-        printf("\n");
-        for(int y=0; y<n; ++y){
-           for(int x=0; x<m; ++x){
-            printf("%d ",backup[y][x]);
-        }
-        printf("\n");
-        }        
+                
     }
 }
 
@@ -80,8 +81,8 @@ int main(){
     }
     */
 
-    for(int y=1; y<n-1; ++y){
-        for(int x=1; x<m-1; ++x){
+    for(int y=0; y<n; ++y){
+        for(int x=0; x<m; ++x){
             if(visited[y][x]==0 && backup[y][x]!=0){
                 dfs(y,x);
                 cnt++;
