@@ -1,56 +1,78 @@
 //URL: https://www.acmicpc.net/problem/2468
-
-#include <stdio.h>
 #include <iostream>
 #include <algorithm>
+#include <cstring> //memset
 
 using namespace std;
 
-int n,cnt;
-int map[101][101];
-int visited[101][101]={0, };
-int MAX;
-int result_max;
-int MIN = 1;
 const int dy[] = {+1, 0, -1, 0};
 const int dx[] = {0, +1, 0, -1};
-int result[101];
+
+int area[101][101];
+int temp[101][101];
+bool visited[101][101];
+int N;
+
+void copy(int depth){
+    for(int y=0; y<N; ++y){
+        for(int x=0; x<N; ++x){
+            if(area[y][x] > depth) temp[y][x] = area[y][x];
+        }
+    }   
+}
 
 void dfs(int y, int x){
-    visited[y][x] = 1;
-    int j=0;
-    result[cnt]++;
+
+    visited[y][x] = true;
+
     for(int dir=0; dir<4; ++dir){
         int ny = y + dy[dir];
         int nx = x + dx[dir];
-        
-        if(ny<0 || ny>=n || nx<0 || nx>=0) continue;
 
-        for(ny=0; ny<n; ++ny){
-            for(nx=0; nx<n; ++nx){
-                if(visited[ny][nx] == 0 && map[ny][ny]>j);
-                dfs(ny, nx);
-                cnt++;
-            }
-        }
-        j++;
+        if(ny<0 || ny>=N || nx<0 || nx>=N) continue;
+
+        if(!visited[ny][nx] && temp[ny][nx]) dfs(ny, nx);
     }
 }
 
+
 int main(){
 
-    scanf("%d",&n);
-    for(int y=0; y<n; ++y){
-        for(int x=0; x<n; ++x){
-            scanf("%d",&map[y][x]);
-            if(MAX<map[y][x]) MAX=map[y][x];
+    scanf("%d", &N);
+    for(int y=0; y<N; ++y){
+        for(int x=0; x<N; ++x){
+            scanf("%d", &area[y][x]);
         }
     }
-    
-    dfs(0,0);
 
-    for(int i=0; i<101; ++i){
-        if(result_max < result[i]) result_max = result[i];
+    int MAX = 0;
+    for(int y=0; y<N; ++y){
+        for(int x=0; x<N; ++x){
+            if(MAX<area[y][x]) MAX=area[y][x];
+        }
+    }    
+
+    int result = 1;
+
+    for(int depth=1; depth<=MAX; depth++){
+        memset(visited, false, sizeof(visited));
+        memset(temp, 0, sizeof(temp));
+        copy(depth);    //area --> temp
+
+        int cnt=0;
+        for(int y=0; y<N; ++y){
+            for(int x=0; x<N; ++x){
+                if(!visited[y][x] && temp[y][x]){
+                    dfs(y,x);
+                    cnt++;
+                }
+            }
+        }
+        printf("cnt=%d\n",cnt);
+        result = max(result, cnt);
     }
-    printf("%d\n",result_max);
+
+    printf("%d\n",result);
+
+    return 0;
 }
