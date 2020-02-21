@@ -44,7 +44,7 @@ void dfs(int y, int x){
         int nx = x + dx[dir];
 
         if(ny<1 || ny>=N-1 || nx<1 || nx>=M-1) continue;
-        if(!visited[ny][nx] && map[ny][nx]){
+        if(visited[ny][nx]==false && map[ny][nx]){
             dfs(ny, nx);
         }
     }
@@ -56,7 +56,7 @@ int main(){
     scanf("%d %d", &N, &M);
     for(int y=0; y<N; ++y){
         for(int x=0; x<M; ++x){
-            scanf("%d",&map[301][301]);
+            scanf("%d",&map[y][x]);
         }
     }
 
@@ -64,12 +64,12 @@ int main(){
     while(1){
         memset(visited, false, sizeof(visited));
         bool result = false;
-
         int cnt=0;
         for(int y=1; y<N-1; ++y){
             for(int x=1; x<M-1; ++x){
                 if(map[y][x] && visited[y][x] == false){
                     cnt++;
+                    printf("cnt==%d\n",cnt);
                     if(cnt == 2){
                         result = true;
                         break;
@@ -79,8 +79,12 @@ int main(){
             }
         }
 
-        if(result) break;
+        if(result){
+            printf("2\n");
+            break;
+        }
         if(cnt == 0){
+            printf("3\n");
             year = 0;
             break;
         }
