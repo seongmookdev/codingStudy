@@ -1,38 +1,44 @@
 //URL: https://www.acmicpc.net/problem/11724
+//REF: https://jaimemin.tistory.com/637//U
 
 #include <iostream>
-#include <stdio.h>
-#include <cstring>
-#include <algorithm>
 #include <vector>
-
 using namespace std;
 
-void dfs(int start, vector<int>graph[], bool check[]){
-    check[start] = true;
-    
-}
+const int MAX = 1000+1;
 
+int M, N;
+vector<int>graph[MAX];
+bool visited[MAX];
+
+void dfs(int node){
+    visited[node] = true;
+
+    for(int i=0; i<graph[node].size(); ++i){
+        int next = graph[node][i];
+        if(!visited[next]) dfs(next);
+    }
+}
 
 int main(){
 
-    int n, m, start;
-    scanf("%d %d", &n, &m);
-    vector<int>graph[n+1];
-    bool check[n+1];
-
-    for(int i=0; i<m; ++i){
+    scanf("%d %d", &N, &M);
+    for(int i=0; i<M; ++i){
         int u, v;
         scanf("%d %d", &u, &v);
+
         graph[u].push_back(v);
         graph[v].push_back(u);
     }
 
-    for(int i=1; i<=n; ++i){
-        sort(graph[i].begin(), graph[i].end());
+    int cnt = 0;
+    for(int i=1; i<N+1; ++i){
+        if(!visited[i]){
+            dfs(i);
+            cnt++;
+        }
     }
 
-    dfs(start, graph, check);
-
+    printf("%d\n",cnt);
     return 0;
 }
