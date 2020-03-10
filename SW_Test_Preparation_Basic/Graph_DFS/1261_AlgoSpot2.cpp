@@ -17,8 +17,8 @@ void bfs(int y, int x){
     broken[y][x] = 0;
     
     while(!q.empty()){
-        int x = q.front().first;
-        int y = q.front().second;
+        int y = q.front().first;
+        int x = q.front().second;
         q.pop();
         
         for(int dir=0; dir<4; ++dir){
@@ -51,27 +51,12 @@ int main(){
     for(int y=0; y<M; ++y){
         for(int x=0; x<N; ++x){
             scanf("%1d", &map[y][x]);
+            broken[y][x] = 98765432;
         }
-    }
-    memset(broken, 121, sizeof(broken));
-    
-    printf("\n");
-    for(int y=0; y<M; ++y){
-        for(int x=0; x<N; ++x){
-            printf("%d ", broken[y][x]);
-        }
-        printf("\n");
     }
     
     bfs(0, 0);
-    
-    printf("\n");
-    for(int y=0; y<M; ++y){
-        for(int x=0; x<N; ++x){
-            printf("%d ", broken[y][x]);
-        }
-        printf("\n");
-    }
+
     printf("%d\n", broken[M-1][N-1]);
     
     return 0;
