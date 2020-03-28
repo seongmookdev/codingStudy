@@ -22,7 +22,7 @@ struct BOARD{
 
         for(int y=0; y<n; ++y){
             for(int x=0; x<n; ++x){
-                map[y][x] = map[n-1-x][y];
+                map[y][x] = temp[n-1-x][y];
            }
         }
     }
