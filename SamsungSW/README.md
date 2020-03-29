@@ -31,9 +31,9 @@ SWEA에서 모의 역량 SW 테스트 문제를 풀어본다.
 ** 필수 문제**
 
 - [구슬 탈출 2](https://www.acmicpc.net/problem/13460)
-  - [20.03.28.]풀이(https://github.com/seongmookdev/codingStudy/blob/master/SamsungSW/%EA%B5%AC%EC%8A%AC%ED%83%88%EC%B6%9C1.cpp)
+  - [20.03.28.-풀이](https://github.com/seongmookdev/codingStudy/blob/master/SamsungSW/%EA%B5%AC%EC%8A%AC%ED%83%88%EC%B6%9C1.cpp)
 - [2048 (Easy)](https://www.acmicpc.net/problem/12100)
-  - [20.03.28.]풀이:(https://github.com/seongmookdev/codingStudy/blob/master/%5B200103%5D_2048.cpp)
+  - [20.03.28.-풀이](https://github.com/seongmookdev/codingStudy/blob/master/%5B200103%5D_2048.cpp)
 - [뱀](https://www.acmicpc.net/problem/3190)
   - [20.03.29.]풀이:
 - [시험 감독]
