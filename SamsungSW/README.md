@@ -34,10 +34,19 @@ SWEA에서 모의 역량 SW 테스트 문제를 풀어본다.
   - [20.03.28.](https://github.com/seongmookdev/codingStudy/blob/master/SamsungSW/%EA%B5%AC%EC%8A%AC%ED%83%88%EC%B6%9C1.cpp)
 - [2048 (Easy)](https://www.acmicpc.net/problem/12100)
   - [20.03.28.](https://github.com/seongmookdev/codingStudy/blob/master/%5B200103%5D_2048.cpp)
+
 - [뱀](https://www.acmicpc.net/problem/3190)
-  - [20.03.29.]풀이:
-- [시험 감독]
-  - [20.03.29.]풀이:
+  - [20.03.30.]풀이:
+- [시험 감독](https://www.acmicpc.net/problem/13458)
+  - [20.03.30.]풀이:
+- 치킨 배달(https://www.acmicpc.net/problem/15686)
+  - [20.03.30.](https://github.com/seongmookdev/codingStudy/blob/master/%5B200109%5D_Chicken_shop.cpp)
+- 연구소 3(https://www.acmicpc.net/problem/17142)
+  - [20.03.30.]
+- 인구 이동(https://www.acmicpc.net/problem/16234)
+  - [20.03.30.]
+
+ 
 주사위 굴리기 / 정답 및 해설
 테트로미노 / 정답 및 해설
 퇴사 / 정답 및 해설
@@ -50,16 +59,15 @@ SWEA에서 모의 역량 SW 테스트 문제를 풀어본다.
 감시 / 정답 및 해설
 사다리 조작 / 정답 및 해설
 드래곤 커브 / 정답 및 해설
-- 치킨 배달(https://www.acmicpc.net/problem/15686)
-  - [20.03.30.](https://github.com/seongmookdev/codingStudy/blob/master/%5B200109%5D_Chicken_shop.cpp)
+
+ 
 큐빙 / 정답 및 해설
-인구 이동 / 정답 및 해설
 나무 재테크 / 정답 및 해설
 아기 상어 / 정답 및 해설
 미세먼지 안녕! / 정답 및 해설
 낚시왕 / 정답 및 해설
 이차원 배열과 연산 / 정답 및 해설
-연구소 3 / 정답 및 해설
+
 
 
 
