@@ -1,74 +1,90 @@
-#include <cstdio>
-#include <cstring>
-#include <vector>
+#include <iostream>
 #include <queue>
+#include <vector>
+#include <cstring>
+
 using namespace std;
 
-struct virus {
-    int x, y;
+int map[50][50];
+int dist[50][50];
+bool sel[10];
+
+int n, m, k;
+int ans = 1e9;
+struct INFO {
+    int y;
+    int x;
 };
 
-int a[50][50], dist[50][50];
-int n, m, k, ans=1e9;
-bool select[10];
-vector<virus> v;
-queue<virus> q;
-const int dx[] = {-1, 0 , 1, 0}, dy[] = {0, 1, 0, -1};
+vector<INFO> virus;
+queue<INFO> q;
 
-void bfs() {
-    int infect=0, times=0;
-    while (!q.empty()) {
-        int x = q.front().x, y = q.front().y; q.pop(); 
-        for (int i=0; i<4; i++) {
-            int nx = x+dx[i], ny = y+dy[i];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= n) continue;
-            if (a[nx][ny] != 1 && dist[nx][ny] == -1) {
-                dist[nx][ny] = dist[x][y]+1;
-                if (a[nx][ny] == 0) {
+const int dy[] = {+1, 0, -1, 0};
+const int dx[] = {0, +1, 0, -1};
+
+void bfs(){
+    
+    int infect = 0, times = 0;
+    while(!q.empty()){
+        int y = q.front().y;
+        int x = q.front().x;
+        q.pop();
+
+        for(int dir=0; dir<4; ++dir){
+            int ny = y+dy[dir];
+            int nx = x+dx[dir];
+
+            if(ny<0 || ny>=n || nx<0 || nx>=n) continue;
+
+            if(map[ny][nx] != 1 && dist[ny][nx] == -1){
+                dist[ny][nx] = dist[y][x] + 1;
+                if(map[ny][nx] == 0){
                     infect += 1;
-                    times = dist[nx][ny];
+                    times = dist[ny][nx];
                 }
-                q.push({nx, ny});
+                q.push({ny, nx});
             }
         }
     }
-    if (infect == k && ans > times) ans = times;
+    if(infect == k && ans > times)    ans = times;
 }
 
-void solve(int idx, int cnt, int d) {
-    if (cnt == m) {
+void dfs(int idx, int cnt, int size){
+    if(cnt == m){
         memset(dist, -1, sizeof(dist));
-        for (int i=0; i<d; i++) {
-            if (select[i]) {
-                q.push({v[i].x, v[i].y});
-                dist[v[i].x][v[i].y] = 0;
+        for(int i=0; i<size; ++i){
+            if(sel[i]){
+                q.push({virus[i].y, virus[i].x});           //VIRUS 위치를 큐에 넣기
+                dist[virus[i].y][virus[i].x] = 0;           //Virus 위치를 0으로
             }
         }
-        bfs();
+        bfs();     //M개 뽑았으면 거기서 확산시킬 때까지의 시간 구하기.
         return;
     }
-    for (int i=idx; i<d; i++) {
-        if (!select[i]) {
-            select[i] = true;
-            solve(i+1, cnt+1, d);
-            select[i] = false;
+
+    for(int i=idx; i<size; ++i){
+        if(!sel[i]){      //선택되지 않으면,
+            sel[i] = true;
+            dfs(i+1, cnt+1, size);
+            sel[i] = false;
         }
+        
     }
 }
 
-int main() {
+int main(){
+
     scanf("%d %d", &n, &m);
-    for (int i=0; i<n; i++) {
-        for (int j=0; j<n; j++) {
-            scanf("%d", &a[i][j]);
-            if (a[i][j] == 2) v.push_back({i, j});
-            if (a[i][j] == 0) k += 1;
+    for(int y=0; y<n; ++y){
+        for(int x=0; x<n; ++x){
+            scanf("%d", &map[y][x]);
+            if(map[y][x] == 2) virus.push_back({y, x});
+            if(map[y][x] == 0) k += 1;
         }
     }
-    solve(0, 0, v.size());
-    printf("%d\n", ans == 1e9 ? -1 : ans);
+
+    dfs(0, 0, virus.size());                  //VIRUS 개수 중에서 M개 뽑기
+    printf("%d\n", ans==1e9 ? -1 : ans);
+    //printf("%d\n", ans);
     return 0;
 }
-
-
-출처: https://rebas.kr/846 [PROJECT REBAS]
