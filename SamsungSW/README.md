@@ -42,7 +42,7 @@ SWEA에서 모의 역량 SW 테스트 문제를 풀어본다.
 - 치킨 배달(https://www.acmicpc.net/problem/15686)
   - [20.03.30.](https://github.com/seongmookdev/codingStudy/blob/master/%5B200109%5D_Chicken_shop.cpp)
 - 연구소 3(https://www.acmicpc.net/problem/17142)
-  - [20.03.30.]
+  - [20.04.01.](https://github.com/seongmookdev/codingStudy/blob/master/SamsungSW/%EC%97%B0%EA%B5%AC%EC%86%8C3.cpp)
 - 인구 이동(https://www.acmicpc.net/problem/16234)
   - [20.03.30.]
 
